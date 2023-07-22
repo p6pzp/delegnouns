@@ -1,0 +1,32 @@
+{
+  "name": "delegnouns",
+  "version": "0.1.0",
+  "main": "abi/DelegNouns.json",
+  "scripts": {
+    "build": "hardhat compile && hardhat export-abi",
+    "lint": "solhint contracts/DelegNouns.sol",
+    "local": "hardhat node",
+    "local-deploy": "hardhat run scripts/deploy-local.ts --network localhost",
+    "clean": "rm -rf abi/ artifacts/ cache/ coverage/ typechain-types/"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.12.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.4",
+    "@openzeppelin/contracts": "^4.9.2",
+    "@typechain/ethers-v6": "^0.4.2",
+    "@typechain/hardhat": "^8.0.2",
+    "@types/node": "^20.4.4",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.6.4",
+    "hardhat": "^2.17.0",
+    "hardhat-abi-exporter": "^2.10.1",
+    "solhint": "^3.4.1",
+    "solidity-coverage": "^0.8.4",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.3.0",
+    "typescript": "^5.1.6"
+  }
+}
