@@ -781,6 +781,11 @@
     "@sentry/types" "5.30.0"
     tslib "^1.9.3"
 
+"@sismo-core/sismo-connect-solidity@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@sismo-core/sismo-connect-solidity/-/sismo-connect-solidity-0.0.20.tgz#db579d6ad058a60b16d913db5391b5aba15dda25"
+  integrity sha512-dSOXboUSR3FSuMIi1cVUwDA4Xn7TVyF0kKCHw1l/fSM1yksoRg2r23i827GRHVO5TL0ZSPPN24JhUsLo/+Y8Jg==
+
 "@solidity-parser/parser@^0.16.0":
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@solidity-parser/parser/-/parser-0.16.1.tgz#f7c8a686974e1536da0105466c4db6727311253c"
