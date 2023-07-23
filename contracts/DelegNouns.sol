@@ -35,8 +35,7 @@ contract DelegNouns is Context, ERC165, IERC1155MetadataURI, SismoConnect {
     //EVENTS
     event NewDelegateAddedForGroupId(bytes16 _groupId, address _delegate);
 
-
-    constructor(SismoConnectConfig memory _dataConfig) IERC1155MetadataURI() SismoConnect(_dataConfig) {}
+    constructor(bytes16 appId) IERC1155MetadataURI() SismoConnect(buildConfig(appId, true)) {}
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
         return interfaceId == type(IERC1155).interfaceId || super.supportsInterface(interfaceId);
