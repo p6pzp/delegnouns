@@ -6,6 +6,8 @@ import 'hardhat-abi-exporter'
 
 config()
 
+import './tasks/dev-send-eth'
+
 const hardhat: HardhatUserConfig = {
   solidity: {
     version: '0.8.19',
