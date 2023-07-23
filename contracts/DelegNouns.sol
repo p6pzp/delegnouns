@@ -45,7 +45,10 @@ contract DelegNouns is Context, ERC165, IERC1155MetadataURI, SismoConnect {
     constructor() IERC1155MetadataURI() SismoConnect(buildConfig(_appId, _isTest)) {}
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
-        return interfaceId == type(IERC1155).interfaceId || super.supportsInterface(interfaceId);
+        return
+            interfaceId == type(IERC1155).interfaceId ||
+            interfaceId == type(IERC1155MetadataURI).interfaceId ||
+            super.supportsInterface(interfaceId);
     }
 
     function balanceOf(address account, uint256 id) public view virtual override returns (uint256) {
