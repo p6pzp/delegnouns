@@ -27,15 +27,22 @@ contract DelegNouns is Context, ERC165, IERC1155MetadataURI, SismoConnect {
     uint256 public constant MAX_HEAD = 233;
     uint256 public constant MAX_GLASSES = 20;
 
+    // Sismo data
+    bytes16 private _appId = 0x9e6a23b6e64796a5d8aa82fde326f6ae;
+    bool private _isTest = true;
+    // vaultId => bool (already claimed)
+    mapping(uint256 => bool) public claimed;
+
     //ERROR
     error DelegateForThisGroupIdAlreadyExist();
     error DelegateForThisGroupIdDoesNotExist();
     error AddressZero();
+    error VaultAlreadyClaimed();
 
     //EVENTS
     event NewDelegateAddedForGroupId(bytes16 _groupId, address _delegate);
 
-    constructor(bytes16 appId) IERC1155MetadataURI() SismoConnect(buildConfig(appId, true)) {}
+    constructor() IERC1155MetadataURI() SismoConnect(buildConfig(_appId, _isTest)) {}
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
         return interfaceId == type(IERC1155).interfaceId || super.supportsInterface(interfaceId);
@@ -202,7 +209,12 @@ contract DelegNouns is Context, ERC165, IERC1155MetadataURI, SismoConnect {
             signature : buildSignature({message : abi.encode(msg.sender)})
         });
 
-        SismoConnectHelper.getUserId(result, AuthType.VAULT);
+        uint256 vaultId = SismoConnectHelper.getUserId(result, AuthType.VAULT);
+        if (claimed[vaultId]) {
+            revert VaultAlreadyClaimed();
+        }
+        claimed[vaultId] = true;
+
         uint256 _tokenId = groupIdtToDelegateAddressToTokenId[_groupId][delegate];
 
         _mint(msg.sender, _tokenId, 1, "");

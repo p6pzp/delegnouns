@@ -2,7 +2,7 @@ import hre from 'hardhat'
 
 const main = async () => {
   const factory = await hre.ethers.getContractFactory('DelegNouns')
-  const contract = await factory.deploy([])
+  const contract = await factory.deploy()
   await contract.waitForDeployment()
   console.info('Contract deployed to:', await contract.getAddress())
 };
